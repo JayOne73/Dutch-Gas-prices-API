@@ -24,6 +24,10 @@ RUN mkdir /home/apiuser/.conda
 RUN mkdir /home/apiuser/app
 RUN mkdir /home/apiuser/app/cache
 
+# Install Python 3.4.3
+
+Run curl -s -L https://www.python.org/ftp/python/3.4.3/Python-3.4.3.tgz > /home/apiuser/Python-3.4.3.tgz
+
 # Install miniconda
 # RUN /bin/bash /home/apiuser/miniconda.sh -b -p /home/apiuser/miniconda
 # ENV PATH=/home/apiuser/miniconda/bin:${PATH}
