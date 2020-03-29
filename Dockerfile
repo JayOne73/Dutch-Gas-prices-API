@@ -6,7 +6,8 @@ RUN  apt-get update \
     && apt-get install -y curl wget \
 	tesseract-ocr \
 	libtesseract-dev \
-	libbz2-dev && apt-get clean && \
+	libbz2-dev \
+	apt-utils && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Custom user to so we don't run under root
