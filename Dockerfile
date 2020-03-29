@@ -25,8 +25,8 @@ RUN mkdir /home/apiuser/app
 RUN mkdir /home/apiuser/app/cache
 
 # Install miniconda
-RUN /bin/bash /home/apiuser/miniconda.sh -b -p /home/apiuser/miniconda
-ENV PATH=/home/apiuser/miniconda/bin:${PATH}
+RUN /bin/bash /home/apiuser/miniconda.sh -b -p /home/apiuser/miniconda3
+ENV PATH=/home/apiuser/miniconda3/bin:${PATH}
 RUN conda update -y conda
 
 # Install the conda packages
