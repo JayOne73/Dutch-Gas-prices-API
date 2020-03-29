@@ -1,5 +1,5 @@
-FROM ubuntu:bionic
-LABEL maintainer="sanderdw@gmail.com"
+FROM resin/rpi-raspbian:latest
+LABEL maintainer="outposter@gmail.com"
 
 # Required ystem packages and cleanup
 RUN  apt-get update \
