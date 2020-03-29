@@ -32,7 +32,7 @@ RUN mkdir /home/apiuser/app/cache
 # ENV PATH=/home/apiuser/miniconda3/bin:${PATH}
 # RUN conda update -y conda
 
-RUN curl -s -L http://repo.continuum.io/miniconda/Miniconda3-3.16.0-Linux-armv7l.sh > miniconda.sh && \
+RUN curl -s -L https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda3-2.0.0-Linux-armv7l.sh > miniconda.sh && \
     chown apiuser /home/apiuser/miniconda.sh && \
     openssl md5 miniconda.sh | grep a01cbe45755d576c2bb9833859cf9fd7 && \
     bash miniconda.sh -b -p /home/apiuser/miniconda3 && \
