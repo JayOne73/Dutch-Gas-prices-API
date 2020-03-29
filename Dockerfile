@@ -2,8 +2,9 @@ FROM resin/armv7hf-debian
 LABEL maintainer="outposter@gmail.com"
 
 # Required ystem packages and cleanup
-RUN  apt-get update \
-    && apt-get install -y curl wget \
+RUN  apt-get update --fix-missing \
+    && apt-get install -y --no-install-recommends \
+        curl wget \
 	tesseract-ocr \
 	libtesseract-dev \
 	bzip2 tar unzip \
