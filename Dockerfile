@@ -14,8 +14,8 @@ RUN  apt-get update \
 RUN useradd -ms /bin/bash apiuser
 
 # Getting the latest miniconda installer and make the user owner
-ADD https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda2-2.0.0-Linux-armv7l.sh /home/apiuser/miniconda.sh
-RUN chown apiuser /home/apiuser/miniconda.sh
+# ADD https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda2-2.0.0-Linux-armv7l.sh /home/apiuser/miniconda.sh
+# RUN chown apiuser /home/apiuser/miniconda.sh
 
 # Switch to apiuser
 USER apiuser
@@ -25,17 +25,36 @@ RUN mkdir /home/apiuser/app
 RUN mkdir /home/apiuser/app/cache
 
 # Install miniconda
-RUN /bin/bash /home/apiuser/miniconda.sh -b -p /home/apiuser/
-ENV PATH=/home/apiuser/berryconda2/bin:${PATH}
-RUN conda update -y conda
+# RUN /bin/bash /home/apiuser/miniconda.sh -b -p /home/apiuser/miniconda
+# ENV PATH=/home/apiuser/miniconda/bin:${PATH}
+# RUN conda update -y conda
+
+RUN curl -s -L http://repo.continuum.io/miniconda/Miniconda3-3.16.0-Linux-armv7l.sh > /home/apiuser/miniconda.sh && \
+    openssl md5 miniconda.sh | grep a01cbe45755d576c2bb9833859cf9fd7 && \
+    bash miniconda.sh -b -p /opt/conda && \
+    rm miniconda.sh
+
+RUN export PATH="/opt/conda/bin:${PATH}" && \
+    conda config --set show_channel_urls True && \
+		conda config --add channels rpi && \
+    conda update --all --yes && \
+		conda install -y python=3.7 -c rpi && \
+    conda install conda-build && \
+    conda install anaconda-client && \
+    conda install fastapi=0.43.0 && \
+    conda install uvicorn=0.9.1 && \
+    conda install pip && \
+		conda clean -tipsy
+
+ENV PATH /opt/conda/bin:$PATH
 
 # Install the conda packages
-RUN conda config --add channels conda-forge
-RUN conda install --yes \
-    python=3.7 \
-    fastapi=0.43.0 \
-    uvicorn=0.9.1 \
-    pip
+# RUN conda config --add channels conda-forge
+# RUN conda install --yes \
+#    python=3.7 \
+#    fastapi=0.43.0 \
+#    uvicorn=0.9.1 \
+#    pip
 
 # Install the pip packages
 RUN pip install \
