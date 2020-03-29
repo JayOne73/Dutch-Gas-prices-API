@@ -31,10 +31,10 @@ RUN mkdir /home/apiuser/app/cache
 
 RUN curl -s -L http://repo.continuum.io/miniconda/Miniconda3-3.16.0-Linux-armv7l.sh > /home/apiuser/miniconda.sh && \
     openssl md5 miniconda.sh | grep a01cbe45755d576c2bb9833859cf9fd7 && \
-    bash miniconda.sh -b -p /opt/conda && \
+    bash miniconda.sh -b -p /home/apiuser/miniconda && \
     rm miniconda.sh
 
-RUN export PATH="/opt/conda/bin:${PATH}" && \
+RUN export PATH="/home/apiuser/miniconda/bin:${PATH}" && \
     conda config --set show_channel_urls True && \
 		conda config --add channels rpi && \
     conda update --all --yes && \
