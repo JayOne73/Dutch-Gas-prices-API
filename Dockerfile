@@ -10,14 +10,12 @@ RUN  apt-get update --fix-missing \
 	bzip2 tar unzip \
 	ca-certificates \
 	libglib2.0-0 libxext6 libsm6 libxrender1 \
-	&& apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-    
-RUN apt-get install -y --no-install-recommends build-essential \
+	build-essential \
 	make patch cmake \
 	gcc \
 	g++ \
-    && rm -rf /var/lib/apt/lists/*
+	&& apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Custom user to so we don't run under root
 RUN useradd -ms /bin/bash apiuser
