@@ -33,7 +33,7 @@ RUN mkdir /home/apiuser/app/cache
 # RUN conda update -y conda
 
 RUN curl -s -L http://repo.continuum.io/miniconda/Miniconda3-3.16.0-Linux-armv7l.sh > miniconda.sh && \
-    chown apiuser /home/apiuser/miniconda.sh \
+    chown apiuser /home/apiuser/miniconda.sh && \
     openssl md5 miniconda.sh | grep a01cbe45755d576c2bb9833859cf9fd7 && \
     bash miniconda.sh -b -p /home/apiuser/miniconda3 && \
     rm miniconda.sh
