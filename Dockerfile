@@ -14,7 +14,7 @@ RUN  apt-get update \
 RUN useradd -ms /bin/bash apiuser
 
 # Getting the latest miniconda installer and make the user owner
-ADD http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh /home/apiuser/miniconda.sh
+ADD https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda3-2.0.0-Linux-armv7l.sh /home/apiuser/miniconda.sh
 RUN chown apiuser /home/apiuser/miniconda.sh
 
 # Switch to apiuser
