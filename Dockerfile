@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:latest
+FROM multiarch/debian-debootstrap:armhf-stretch-slim
 LABEL maintainer="outposter@gmail.com"
 
 # Required ystem packages and cleanup
