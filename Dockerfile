@@ -55,9 +55,8 @@ ENV PATH /home/apiuser/miniconda3/bin:$PATH
 # Install the conda packages
 RUN conda config --add channels conda-forge
 RUN conda install --yes \
-    python=3.7 \
-    fastapi=0.43.0 \
-    uvicorn=0.9.1 \
+    fastapi \
+    uvicorn \
     pip
 
 # Install the pip packages
