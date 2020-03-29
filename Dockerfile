@@ -14,6 +14,7 @@ RUN  apt-get update --fix-missing \
 	make patch cmake \
 	gcc \
 	g++ \
+	zlib libjpeg \
 	&& apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
