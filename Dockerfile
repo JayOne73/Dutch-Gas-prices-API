@@ -62,14 +62,16 @@ ENV PATH /home/apiuser/miniconda3/bin:$PATH
 RUN export PATH="/home/apiuser/miniconda3/bin:${PATH}" && \
     conda install --yes jinja2 \
     pip && \
-    conda install -c conda-forge fastapi && \
-    conda install -c conda-forge uvicorn && \
+#    conda install -c conda-forge fastapi=0.43.0 && \
+#    conda install -c conda-forge uvicorn= && \
     conda config --set anaconda_upload yes && \
     conda config --set use_pip false && conda config --set show_channel_urls true && \
   	conda clean -tipsy
 
 # Install the pip packages
 RUN pip install \
+    fastapi \
+    uvicorn \
     requests \
     requests[socks] \
     requests[security] \
