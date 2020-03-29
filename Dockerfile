@@ -14,7 +14,7 @@ RUN  apt-get update \
 RUN useradd -ms /bin/bash apiuser
 
 # Getting the latest miniconda installer and make the user owner
-ADD https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda3-2.0.0-Linux-armv7l.sh /home/apiuser/miniconda.sh
+ADD https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda2-2.0.0-Linux-armv7l.sh /home/apiuser/miniconda.sh
 RUN chown apiuser /home/apiuser/miniconda.sh
 
 # Switch to apiuser
@@ -25,8 +25,8 @@ RUN mkdir /home/apiuser/app
 RUN mkdir /home/apiuser/app/cache
 
 # Install miniconda
-RUN /bin/bash /home/apiuser/miniconda.sh -b -p /home/apiuser/miniconda3
-ENV PATH=/home/apiuser/miniconda3/bin:${PATH}
+RUN /bin/bash /home/apiuser/miniconda.sh -b -p /home/apiuser/berryconda2
+ENV PATH=/home/apiuser/berryconda2/bin:${PATH}
 RUN conda update -y conda
 
 # Install the conda packages
